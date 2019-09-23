@@ -9,12 +9,12 @@ python -m arcade.examples.move_mouse
 """
 
 import arcade
-
+#create the window 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 SCREEN_TITLE = "Move Mouse Example"
 
-
+#create a class called ball and assign it its coordinates
 class Ball:
     def __init__(self, position_x, position_y, radius, color):
 
@@ -23,12 +23,12 @@ class Ball:
         self.position_y = position_y
         self.radius = radius
         self.color = color
-
+#create a function inside the ball class and make it draw the ball we just created.
     def draw(self):
         """ Draw the balls with the instance variables we have. """
         arcade.draw_circle_filled(self.position_x, self.position_y, self.radius, self.color)
 
-
+#create the class mygame that makes the ball to move with the cursor.
 class MyGame(arcade.Window):
 
     def __init__(self, width, height, title):
@@ -40,7 +40,7 @@ class MyGame(arcade.Window):
         # So we just see our object, not the pointer.
         self.set_mouse_visible(False)
 
-        arcade.set_background_color(arcade.color.ASH_GREY)
+        arcade.set_background_color(arcade.color.ASH_GREY) #sets the background color for the window of the game
 
         # Create our ball
         self.ball = Ball(50, 50, 15, arcade.color.AUBURN)
@@ -49,12 +49,12 @@ class MyGame(arcade.Window):
         """ Called whenever we need to draw the window. """
         arcade.start_render()
         self.ball.draw()
-
+#tells the program what to do when it recives mouse input(positional input)
     def on_mouse_motion(self, x, y, dx, dy):
         """ Called to update our objects. Happens approximately 60 times per second."""
         self.ball.position_x = x
         self.ball.position_y = y
-
+#tells the program what to do when it recives mouse input(button input)
     def on_mouse_press(self, x, y, button, modifiers):
         """
         Called when the user presses a mouse button.
@@ -70,11 +70,11 @@ class MyGame(arcade.Window):
         if button == arcade.MOUSE_BUTTON_LEFT:
             self.ball.color = arcade.color.AUBURN
 
-
+#tell arcade to run
 def main():
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     arcade.run()
 
-
+#checks if the name of the file currntly open is __main__
 if __name__ == "__main__":
     main()

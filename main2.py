@@ -14,7 +14,7 @@ SCREEN_HEIGHT = 480
 SCREEN_TITLE = "Move Keyboard Example"
 MOVEMENT_SPEED = 3
 
-
+#creates a class that contains everthing required to create the ball
 class Ball:
     def __init__(self, position_x, position_y, change_x, change_y, radius, color):
 
@@ -29,7 +29,7 @@ class Ball:
     def draw(self):
         """ Draw the balls with the instance variables we have. """
         arcade.draw_circle_filled(self.position_x, self.position_y, self.radius, self.color)
-
+#tells the ball to update itself with the position 
     def update(self):
         # Move the ball
         self.position_y += self.change_y
@@ -48,9 +48,9 @@ class Ball:
         if self.position_y > SCREEN_HEIGHT - self.radius:
             self.position_y = SCREEN_HEIGHT - self.radius
 
-
+#creates a class that makes the window 
 class MyGame(arcade.Window):
-
+#creates a function that contains the code to make the mouse invisible and sets the window color
     def __init__(self, width, height, title):
 
         # Call the parent class's init function
@@ -64,15 +64,15 @@ class MyGame(arcade.Window):
 
         # Create our ball
         self.ball = Ball(50, 50, 0, 0, 15, arcade.color.AUBURN)
-
+#renders the ball
     def on_draw(self):
         """ Called whenever we need to draw the window. """
         arcade.start_render()
         self.ball.draw()
-
+#tells the ball to update itself with time 
     def update(self, delta_time):
         self.ball.update()
-
+#tells the program what to do with the keyboard input
     def on_key_press(self, key, modifiers):
         """ Called whenever the user presses a key. """
         if key == arcade.key.LEFT:
@@ -91,11 +91,11 @@ class MyGame(arcade.Window):
         elif key == arcade.key.UP or key == arcade.key.DOWN:
             self.ball.change_y = 0
 
-
+#creates the window by telling arcade to run and create the window
 def main():
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     arcade.run()
 
-
+#checks if the name of the file currently runnig is __main__
 if __name__ == "__main__":
     main()
